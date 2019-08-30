@@ -1,8 +1,10 @@
-abstract class
+<?php
+
+abstract class FiguraGeometrica
 {
-    private $_color;
-    private $_perimetro;
-    private $_superficie;
+    protected $_color;
+    protected $_perimetro;
+    protected $_superficie;
 
     public function __construct()
     {
@@ -23,8 +25,7 @@ abstract class
 
     public function ToString()
     {
-
-        return ;
+        return "<br/>Color: " . $this->color . "<br/>Perimetro: " . $this->_perimetro . "<br/>Superficie: " . $this->superficie;
     }
 
     public abstract Dibujar();
