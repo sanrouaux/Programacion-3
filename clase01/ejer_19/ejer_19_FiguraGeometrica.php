@@ -25,7 +25,7 @@ abstract class FiguraGeometrica
 
     public function ToString()
     {
-        return "<br/>Color: " . $this->color . "<br/>Perimetro: " . $this->_perimetro . "<br/>Superficie: " . $this->superficie;
+        return "<br/>Color: " . $this->_color . "<br/>Perimetro: " . $this->_perimetro . "<br/>Superficie: " . $this->_superficie;
     }
 
     public abstract Dibujar();
