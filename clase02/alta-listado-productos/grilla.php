@@ -31,14 +31,16 @@ echo "<table class='table'>
 			<tr>
 				<th>  COD. BARRA </th>
 				<th>  NOMBRE     </th>
+				<th>  FOTO     </th>
 			</tr> 
 		</thead>";   	
 
 	foreach ($ArrayDeProductos as $prod){
-
+		var_dump($prod);
 		echo " 	<tr>
 					<td>".$prod->GetCodBarra()."</td>
 					<td>".$prod->GetNombre()."</td>
+					<td><img src='".$prod->GetPath()."' height='200px' width='200px' /></td>
 				</tr>";
 	}	
 echo "</table>";		

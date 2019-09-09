@@ -2,12 +2,12 @@
 class Producto{
     private $nombre;
     private $cod_barra;
+    private $path_foto;
 
-    public function __construct($n=null, $c=null){
-        if($n!=null && $c!=null){
-            $this->nombre = $n;
-            $this->cod_barra = $c;
-        }
+    public function __construct($n=null, $c=null, $p=null){
+        $this->nombre = $n;   
+        $this->cod_barra = $c;
+        $this->path_foto = $p;
     }
 
     public function GetCodBarra(){
@@ -19,14 +19,18 @@ class Producto{
         return $this->nombre;
     }
 
+    public function GetPath(){
+        return $this->path_foto;
+    }
+
     public function ToString(){
-        return $this->cod_barra . " - " . $this->nombre . "\r\n";
+        return $this->GetCodBarra() . " - " . $this->GetNombre() . " - " . $this->GetPath() . "\r\n";
     }
 
     //devuelve un booleano
     public static function Guardar($obj){
         $result = false;
-        $archivo = fopen("./archivos/productos.txt", "a+");
+        $archivo = fopen("./Archivos/productos.txt", "a+");
         
         if(fwrite($archivo, $obj->ToString()) > 0 )
         $result = true;
@@ -42,8 +46,8 @@ class Producto{
         
         while(!feof($archivo)){
             $elemento = explode(" - ", fgets($archivo));
-            //echo $elemento[0] . " - " . $elemento[1] . "\r\n";
-            array_push($array, $elemento);
+            $prod = new Producto($elemento[0], $elemento[1], $elemento[2]);
+            array_push($array, $prod);
         }
 
         fclose($archivo);
