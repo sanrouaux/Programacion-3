@@ -1,6 +1,6 @@
 <?php
 
-    $case = isset($_GET["instruccion"]) ? $_GET["instruccion"] : null;
+    $case = isset($_POST["instruccion"]) ? $_POST["instruccion"] : null;
 
     $host = 'localhost';
     $user = "root";
@@ -15,7 +15,7 @@
         case "traerTodos_usuarios":
         $sqlInstruction = "SELECT * FROM `usuarios`";
         $result = $connection->query($sqlInstruction);
-        $tabla = "<table>
+        $tabla = "<table border='1'>
                     <tr>
                         <td>ID</td>
                         <td>NOMBRE</td>
@@ -25,8 +25,8 @@
                     </tr>";
         while($row = $result->fetch_object())
         {         
-            $tabla .= "<table>
-            <tr>
+            $tabla .= 
+            "<tr>
                 <td>".$row->id."</td>
                 <td>". $row->nombre ."</td>
                 <td>". $row->apellido ."</td>
@@ -39,7 +39,7 @@
         break;
 
         case "traerPorId_usuarios":
-        $sqlInstruction = "SELECT * FROM `usuarios` WHERE id=" . $_GET["id"];
+        $sqlInstruction = "SELECT * FROM `usuarios` WHERE id=" . $_POST["id"];
         $result = $connection->query($sqlInstruction);
         if($result != null)
         {
@@ -49,7 +49,7 @@
         break;
 
         case "traerPorEstado_usuarios":
-        $sqlInstruction = "SELECT * FROM `usuarios` WHERE estado=" . $_GET["estado"];
+        $sqlInstruction = "SELECT * FROM `usuarios` WHERE estado=" . $_POST["estado"];
         $result = $connection->query($sqlInstruction);
         while($row = $result->fetch_object())        
         {            
@@ -59,8 +59,8 @@
 
         case "agregar_usuarios":
         $sqlInstruction = "INSERT INTO `usuarios`(`nombre`, `apellido`, `clave`, `perfil`, 
-            `estado`) VALUES ('" . $_GET["nombre"] . "','" . $_GET["apellido"] . "','"
-            . $_GET["clave"] . "','" . $_GET["perfil"] . "','" . $_GET["estado"] . "')";
+            `estado`) VALUES ('" . $_POST["nombre"] . "','" . $_POST["apellido"] . "','"
+            . $_POST["clave"] . "','" . $_POST["perfil"] . "','" . $_POST["estado"] . "')";
         $result = $connection->query($sqlInstruction);
         if(mysqli_affected_rows($connection) > 0) {            
             echo "Se agregó un registro";
@@ -71,9 +71,9 @@
         break;
 
         case "modificar_usuarios":
-        $sqlInstruction = "UPDATE `usuarios` SET `nombre`='".$_GET["nombre"]."',
-        `apellido`='".$_GET["apellido"]."',`clave`='".$_GET["clave"]."',
-        `perfil`=".$_GET["perfil"].",`estado`=".$_GET["estado"]." WHERE id=".$_GET["id"];
+        $sqlInstruction = "UPDATE `usuarios` SET `nombre`='".$_POST["nombre"]."',
+        `apellido`='".$_POST["apellido"]."',`clave`='".$_POST["clave"]."',
+        `perfil`=".$_POST["perfil"].",`estado`=".$_POST["estado"]." WHERE id=".$_POST["id"];
         $result = $connection->query($sqlInstruction);       
         if(mysqli_affected_rows($connection) > 0)
         {            
@@ -86,7 +86,7 @@
         break;
 
         case "borrar_usuarios":
-            $sqlInstruction = "DELETE FROM `usuarios` WHERE id=".$_GET["id"];
+            $sqlInstruction = "DELETE FROM `usuarios` WHERE id=".$_POST["id"];
             $result = $connection->query($sqlInstruction);       
             if(mysqli_affected_rows($connection) > 0)
             {            
