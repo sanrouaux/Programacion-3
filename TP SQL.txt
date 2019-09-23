@@ -1,0 +1,13 @@
+Consultas:
+
+1) SELECT `pNumero`, `pNombre`, `Precio`, `Tamaño` FROM `productos` ORDER BY pNombre
+
+2) SELECT * FROM `proveedores` WHERE Localidad = 'Quilmes'
+
+3) SELECT `Numero`, `pNumero`, `Cantidad` FROM `envios` WHERE Cantidad >= 200 && Cantidad <= 300
+
+4) SELECT SUM(Cantidad) FROM `envios`
+
+5) SELECT `pNumero` FROM `envios` LIMIT 3
+
+6) 
