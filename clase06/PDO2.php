@@ -10,7 +10,7 @@
     switch($case)
     {
         case "traerTodos_usuarios":
-
+        
         $sentencia = $pdo->prepare("SELECT * FROM usuarios");
         $sentencia->execute(); //devuelve un booleano
 
@@ -64,12 +64,31 @@
         break;
 
         case "traerPorEstado_usuarios":
-        $sqlInstruction = "SELECT * FROM `usuarios` WHERE estado=" . $_POST["estado"];
-        $result = $connection->query($sqlInstruction);
-        while($row = $result->fetch_object())        
-        {            
-            echo $row->id . " - " . $row->nombre . " - " . $row->apellido . " - " . $row->clave . "<br/>";
+        $sentencia = $pdo->prepare("SELECT * FROM usuarios WHERE estado = :estado");
+        $sentencia->bindParam(':estado', $_POST["estado"], PDO::PARAM_INT);
+        $sentencia->execute();
+        $tabla = "<table border='1'>
+                    <tr>
+                        <td>ID</td>
+                        <td>NOMBRE</td>
+                        <td>APELLIDO</td>
+                        <td>PERFIL</td>
+                        <td>ESTADO</td>
+                    </tr>";
+
+        while($row = $sentencia->fetch(PDO::FETCH_OBJ))
+        {
+            $tabla .= 
+            "<tr>
+                <td>".$row->id."</td>
+                <td>". $row->nombre ."</td>
+                <td>". $row->apellido ."</td>
+                <td>". $row->perfil ."</td>
+                <td>". $row->estado ."</td>
+            </tr>";  
         }
+        $tabla .= "</table>";
+        echo $tabla;
         break;
 
         case "agregar_usuarios":

@@ -17,17 +17,21 @@ class usuario
             return $this->id." - ".$this->nombre." - ".$this->apellido." - ".$this->perfil." - ".$this->estado." - ".$this->correo;
     }
 
-    public static function ExisteEnBD($correo, $clave) : bool
+    public static function ExisteEnBD($usuario)
     {
+        $retorno = new stdClass();
+
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
-        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM usuarios WHERE correo =".$correo);
+        $consulta = $objetoAccesoDato->RetornarConsulta("SELECT * FROM usuarios WHERE correo =".$usuario->correo);
         $consulta->execute();
-        if($consulta->row_count() > 0) {
-            return true;
+        $row = $consulta->fetch(PDO::FETCH_OBJ);
+        if($consulta->row_count() > 0 && $row->clave == $usuario->clave) {
+            $retorno->existeEnBd = true;
         }
         else {
-            return false;
-        }        
+            $retorno->existeEnBd = false;
+        }   
+        return $retorno;     
     }
     
     public static function TraerTodosLosUsuarios()
@@ -80,14 +84,14 @@ class usuario
 
     }
 
-    public static function EliminarCD($cd)
+    public static function EliminarUsuario($usuario)
     {
 
         $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
         
         $consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM cds WHERE id = :id");
         
-        $consulta->bindValue(':id', $cd->id, PDO::PARAM_INT);
+        $consulta->bindValue(':id', $usuario->id, PDO::PARAM_INT);
 
         return $consulta->execute();
 

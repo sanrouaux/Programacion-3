@@ -1,13 +1,81 @@
-Consultas:
+TP SQL
+Programación III
 
-1) SELECT `pNumero`, `pNombre`, `Precio`, `Tamaño` FROM `productos` ORDER BY pNombre
 
-2) SELECT * FROM `proveedores` WHERE Localidad = 'Quilmes'
+RESPUESTAS:
 
-3) SELECT `Numero`, `pNumero`, `Cantidad` FROM `envios` WHERE Cantidad >= 200 && Cantidad <= 300
+1) 
+SELECT `pNumero`, `pNombre`, `Precio`, `Tamaño` 
+FROM `productos` 
+ORDER BY pNombre
 
-4) SELECT SUM(Cantidad) FROM `envios`
+2) 
+SELECT * 
+FROM `proveedores` 
+WHERE Localidad = 'Quilmes'
 
-5) SELECT `pNumero` FROM `envios` LIMIT 3
+3) 
+SELECT `Numero`, `pNumero`, `Cantidad` 
+FROM `envios` 
+WHERE Cantidad >= 200 && Cantidad <= 300
+
+4) 
+SELECT SUM(Cantidad) 
+FROM `envios`
+
+5) 
+SELECT `pNumero` 
+FROM `envios` LIMIT 3
 
 6) 
+SELECT proveedores.Nombre, productos.pNombre FROM envios
+INNER JOIN proveedores ON envios.Numero = proveedores.Numero
+INNER JOIN productos on envios.pNumero = productos.pNumero
+
+7) 
+SELECT envios.Cantidad * productos.Precio FROM `envios` 
+INNER JOIN productos ON envios.pNumero=productos.pNumero
+
+8) 
+SELECT SUM(Cantidad) FROM `envios` 
+WHERE Numero = 102 && pNumero = 1
+
+9) 
+SELECT envios.pNumero FROM `envios` 
+INNER JOIN proveedores ON proveedores.Numero = envios.Numero
+WHERE proveedores.Localidad = 'Avellaneda'
+
+10)
+SELECT Domicilio, Localidad FROM proveedores
+WHERE Nombre like "%i%"
+
+11)
+INSERT INTO productos (pNumero, pNombre, Precio, Tamaño) 
+VALUES (4, 'Chocolate', 25.35, 'Chico')
+
+12)
+INSERT INTO proveedores (Nombre, Domicilio, Localidad) 
+VALUES ('Gonzalez', "Obón 456", "Lanús")
+
+13)
+INSERT INTO proveedores (Numero, Nombre, Domicilio, Localidad)
+VALUES (107, 'Rosales', "Belgrano 456", "La Plata")
+
+14)
+UPDATE productos
+SET Precio=97.5
+WHERE Tamaño='Grande'
+
+15)
+UPDATE productos
+SET Tamaño='Mediano'
+WHERE Tamaño='Chico' 
+and (SELECT SUM(Cantidad) FROM envios WHERE envios.pNumero = productos.pNumero) >= 300 
+
+16)
+DELETE FROM productos
+WHERE pNumero=1
+
+17)
+DELETE FROM proveedores
+WHERE NOT EXISTS(SELECT * FROM envios WHERE envios.Numero = proveedores.Numero)
