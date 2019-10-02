@@ -1,0 +1,7 @@
+{
+    "name": "Programacion III",
+    "description": "Generador de PDFs",
+    "require": {
+        "mpdf/mpdf": "^8.0"
+    }
+}

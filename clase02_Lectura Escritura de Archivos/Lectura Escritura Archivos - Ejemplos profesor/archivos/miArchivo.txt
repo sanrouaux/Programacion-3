@@ -1,0 +1,2 @@
+Este es un archivo de texto creado a los fines  de testear el funcionamiento 
+de las funciones de manipulación de archivos en PHP.
