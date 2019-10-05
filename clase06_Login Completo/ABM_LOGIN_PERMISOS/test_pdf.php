@@ -1,22 +1,25 @@
 <?php
 
-require "vendor/autoload.php";
+require_once __DIR__ . '/vendor/autoload.php';
 include ("usuario.php");
+
+header('content-type:application/pdf');
 
 $mpdf = new \Mpdf\Mpdf();
 
 $usuarios = usuario::TraerTodosLosUsuarios();
 
 $tabla = "<table>
-            <theader>
+            <thead>
+                <tr>
                 <td>ID</td>
                 <td>NOMBRE</td>
                 <td>APELLIDO</td>
                 <td>CORREO</td>
                 <td>PERFIL</td>
                 <td>FOTO</td>
-            </theader>
-        </table>";
+                </tr>
+            </thead>";
 
 foreach($usuarios as $usu)
 {
@@ -32,5 +35,5 @@ foreach($usuarios as $usu)
 
 $tabla .= "</table>";
 
-$mpdf->writeHtml($tabla);
-$mpdf->output();
+$mpdf->WriteHTML($tabla);
+$mpdf->Output();
