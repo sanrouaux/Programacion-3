@@ -8,26 +8,80 @@
     <script type="text/javascript" src="registro.js"></script>
 </head>
 <body>
-    <h3>Nombre</h3>
-    <input type="text" id="txtNombre" />
-    <br/>
-    <h3>Apellido</h3>
-    <input type="text" id="txtApellido" />
-    <br/>
-    <h3>Correo</h3>
-    <input type="text" id="txtCorreo" />
-    <br/>
-    <h3>Clave</h3>
-    <input type="text" id="txtClave" />
-    <br/>
-    <h3>Perfil</h3>
-    <input type="text" id="txtPerfil" />
-    <br/>
-    <br/>
-    <input type="file" id="foto" />
-    <br/>
-    <br/>
-    <input type="button" id="btnAceptar" value="Aceptar" onclick="Registro()"/>
-    <a href="./login.php"><input type="button" id="btnCancelar" value="Cancelar"/></a>
+    <table width="100%" style="text-align:center">
+        <tr>
+            <td>
+                <h4>Nombre</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtNombre" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Apellido</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtApellido" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Correo</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtCorreo" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Clave</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtClave" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <h4>Perfil</h4> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtPerfil" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="file" id="foto" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="./login.php"><input type="button" id="btnCancelar" value="Cancelar"/></a>
+                <input type="button" id="btnAceptar" value="Aceptar" onclick="Registro()"/>
+            </td>
+        </tr>
+        
+    </table>
+    
 </body>
 </html>

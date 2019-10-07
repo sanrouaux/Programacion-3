@@ -25,6 +25,7 @@ function Registro() {
     httpRequest.onreadystatechange = () => {
         if(httpRequest.status == 200 && httpRequest.readyState == 4)
         {
+            window.location.href = "./login.php";
             console.log(JSON.parse(httpRequest.responseText));
         }
     }

@@ -19,7 +19,8 @@ function Aceptar() {
             {         
                 window.location.href = "./principal.php";
             }
-            else {
+            else 
+            {
                 alert("Usuario incorrecto");
             }
         }

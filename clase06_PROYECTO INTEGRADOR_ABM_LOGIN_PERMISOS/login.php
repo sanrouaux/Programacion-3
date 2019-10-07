@@ -8,15 +8,49 @@
     <script type="text/javascript" src="login.js"></script>
 </head>
 <body>
-    <h3>Correo</h3>
-    <input type="text" id="txtCorreo" />
-    <br/>
-    <h3>Clave</h3>
-    <input type="text" id="txtClave" />
-    <br/>
-    <br/>
-    <input type="button" id="btnAceptar" value="Aceptar" onclick="Aceptar()"/>
-    <input type="button" id="btnCancelar" value="Cancelar"/>
-    <a href="registro.php"><input type="button" id="btnRegistrarse" value="Registrarse" /></a>
+    <table width="100%" style="text-align:center">
+        <tr>
+            <td>
+                <h4>Correo</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtCorreo" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Clave</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="txtClave" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="btnAceptar" value="Aceptar" onclick="Aceptar()"/>
+                <input type="button" id="btnCancelar" value="Cancelar"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="registro.php"><input type="button" id="btnRegistrarse" value="Registrarse" /></a>
+            </td>
+        </tr>
+    </table>
+    
 </body>
 </html>
