@@ -1,0 +1,180 @@
+LECTURA Y ESCRITURA DE ARCHIVOS:
+
+ESCRITURA:
+
+$pArchivo = fopen("archivo.txt", "w"); //"a"
+$respuesta = fwrite($pArchivo, "Hola, mundo!"); //RETORNA CANTIDAD DE BYTES ESCRITOS
+if($respuesta > 0)
+{
+    echo "El archivo se escribió correctamente";
+}
+fclose($pArchivo);
+
+
+LECTURA:
+
+a)
+$pArchivo = fopen("archivo.txt", "r");
+$texto = fread($pArchivo, filesize("archivo.txt")); 
+if($texto != null)
+{
+    echo $texto;
+}
+fclose($pArchivo);
+
+b)
+$pArchivo = fopen("archivo.txt", "r");
+while(!(feof($pArchivo)))
+{
+    echo fgets($pArchivo)."<br>";
+}
+fclose($pArchivo);
+
+
+
+COPIAR UN ARCHIVO:
+
+$copio = copy($path_origen, $path_destino);		
+if($copio){
+	echo "<h2>copia EXITOSA </h2><br/>";			
+}
+else {
+	echo "<h2>no se pudo COPIAR </h2>";
+}
+
+
+ELIMINAR UN ARCHIVO:
+$elimino = unlink($path);		
+if($elimino)
+{
+	echo "<h2>elimino EXITOSAMENTE </h2><br/>";			
+}
+else
+{
+	echo "<h2>no se pudo ELIMINAR </h2>";
+}
+
+
+
+FORM EN HTML:
+<form action="backend.php" method="get" > //method="post"
+	<textarea name="comentarios">	//Desde el backend, accedemos a los valores a través de $_GET["name"] p $_POST["name"]
+	</textarea>
+	<input type="submit" id="btnEnviar" value="Enviar" />
+	<input type="reset" value="Limpiar" />
+</form>
+
+
+
+SUBIR ARCHIVO AL SERVIDOR DESDE UN FORM-HTML:
+
+<form action="backend.php" method="post" enctype="multipart/form-data" >
+   <input type="file" name="archivo"  class="MiBotonUTN" /> 
+   //O bien: <input type="file" name="archivo[]" multiple accept=".jpg, image/gif" class="MiBotonUTN" /> 
+   <br/>
+   <input type="submit" class="MiBotonUTN" value="Subir" />
+</form>
+
+
+
+VARIABLES SUPER GLOBALES EN PHP:
+$_GET
+$_POST
+$_REQUEST //Contiene la información de ambas
+
+
+
+MANEJO DE ARCHIVOS DESDE EL SERVIDOR:
+$_FILES //Es un array de arrays. Puede guardar múltiples archivos. 
+
+Cada archivo guardado tiene los siguientes atributos:
+$_FILES["nombreDadoAlInput"]["name"]
+$_FILES["nombreDadoAlInput"]["tmp_name"]
+$_FILES["nombreDadoAlInput"]["size"]
+$_FILES["nombreDadoAlInput"]["type"]
+$_FILES["nombreDadoAlInput"]["error"]
+
+move_uploaded_files$_FILES["nonmbreDadoAlInput"]["tmp_name"], $nuevoPath); //Debe hacerse antes de que finalice el script
+
+
+VARIABLES DE SESION:
+session_start();
+$_SESSION["clave"] = "valor";
+session_unset(); / session_destroy();
+
+
+COOKIES:
+setcookie("nombreCookie", "valorGuardado", time()+ n segundo) //Setea una cookie que es enviada al cliente
+$_COOKIE["nombreDeLaCookie"] //Para acceder a las cookies enviadas
+setcookie("nombreCookie", "", time()- n segundos)
+
+
+MANEJO DE JSON:
+$obj = json_decode("string"); //De string con formato JSON a objeto stdClass
+$str = json_encode($obj); //De objeto de PHP a string con formato JSON
+
+
+BASE DE DATOS:
+a) Función MYSQLI_CONNECT
+
+INSTRUCCION SELECT:
+$con = mysqli_connect($host, $user, $pass, $base);
+$sql = "SELECT * FROM producto";
+$rs = $con->query($sql);
+while ($row = $rs->fetch_object()) { //fetch_all / fetch_assoc / fetch_array([MYSQLI_NUM | MYSQLI_ASSOC | MYSQLI_BOTH])
+            $user_arr[] = $row;
+        }
+mysqli_close($con);
+
+INSTRUCCION INSERT/UPDATE/DELETE:
+$con = mysqli_connect($host, $user, $pass, $base);
+$sql = "INSERT INTO producto (codigo_barra, nombre, path_foto)
+       VALUES(1112, 'nombre_producto', 'fake.jpg')";
+$rs = $con->query($sql);
+if(mysqli_affected_rows($con) > 0) {
+	echo "ok";
+}
+mysqli_close($con);
+
+
+b) PDO
+try {
+   $pdo = new PDO("mysql:host=localhost;dbname=nombreBase;charset=utf8", "root", "");
+   $sentencia = $pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+   $sentencia->bindParam(':id', $_POST["id"], PDO::PARAM_INT); //$sentencia->bindValue(':id', 2, PDO::PARAM_INT)
+   $sentencia->execute(); 
+   while($row = $sentencia->fetch(PDO::FETCH_OBJ)) //Equivalente a fetchObject(),
+   			//fetch(PDO::FETCH_ASSOC), 
+			//fetch(PDO::FETCH_NUM), 
+			//fetch(PDO::FETCH_BOTH), 
+			//fetch(PDO::FETCH_CLASS) //Equivalente a fetchObject(),
+			//fetchAll() --> Devuelve un array con todos los resultado			 
+   {
+	echo $row->atrituto1;
+	echo $row->atributo2;
+   }
+}
+catch(PDOException $e) {
+   echo $e->getMessage();
+}
+
+
+GESTION DE PAQUETES PHP:
+Setear el archivo composer.json. Ejemplo:
+{
+    "name" : "utn_fra/prog_3",
+    "description": "generador de documentos .pdf",
+	"require":{
+		"nombreProyecto/nombreProyecto": "8.*" //El nombre del proyecto se obtiene de packagist.org
+	}
+}
+
+Instalar las dependencias por consola:
+Comando: composer install
+
+Agregar las dependencias al archivo de trabajo: 
+require_once __DIR__ . '/vendor/autoload.php';
+
+Para vincular el frontend al PHP que genera los PDFs, usar atributo HTML:
+onclick="window.location.href='./back_pdf.php'
+
