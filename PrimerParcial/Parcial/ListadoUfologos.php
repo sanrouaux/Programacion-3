@@ -3,8 +3,18 @@
 include "./clases/Ufologo.php";
 
 $arrayUfo = Ufologo::TraerTodos();
+
 echo "[";
-foreach($arrayUfo as $ufo) {
-    echo $ufo->ToJSON().",<br>";
+for($i = 0; $i < count($arrayUfo); $i++) {
+    if($i == count($arrayUfo) - 1) {
+        echo $arrayUfo[$i]->ToJSON()."]";
+    }
+    else {
+        echo $arrayUfo[$i]->ToJSON().",<br>";
+    }
 }
-echo "]";
+
+//foreach($arrayUfo as $ufo) {
+//    echo $ufo->ToJSON().",<br>";
+//}
+//echo "]";

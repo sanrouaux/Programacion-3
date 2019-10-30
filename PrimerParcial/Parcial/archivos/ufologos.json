@@ -1,1 +1,9 @@
-[{"pais": "argentina", "legajo": "1234", "clave": "1111"},{"pais": "argentina", "legajo": "1234", "clave": "1111"},{"pais": "chile", "legajo": "999", "clave": "888"},{"pais": "chile", "legajo": "999", "clave": "888"},{"pais": "chile", "legajo": "999", "clave": "888"},{"pais": "", "legajo": "111", "clave": "222"},{"pais": "", "legajo": "", "clave": ""},{"pais": "uruguay", "legajo": "111", "clave": "222"},{"pais": "uruguay", "legajo": "114", "clave": "222"},{"pais": "uruguay", "legajo": "333", "clave": "333"}]
+{"pais": "argentina", "legajo": "111", "clave": "222"}
+{"pais": "chile", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}
+{"pais": "uruguay", "legajo": "222", "clave": "333"}

@@ -17,6 +17,53 @@ class Ufologo
     }
 
     public function GuardarEnArchivo() {
+        $retorno = new stdClass();
+        $pArchivo = fopen("./archivos/ufologos.json", "a");
+        $respuesta = fwrite($pArchivo, $this->ToJSON()."\r\n");
+        if($respuesta > 0) {
+            $retorno->exito = true;
+            $retorno->mensaje = "Se guardo el ufologo";
+        }        
+        fclose($pArchivo);
+        return json_encode($retorno);
+    }
+
+    public static function TraerTodos() {
+        $retorno = array();
+        $pArchivo = fopen("./archivos/ufologos.json", "r");
+        while(!feof($pArchivo)) {
+            $row = fgets($pArchivo);            
+            if($row != "")
+            {
+                $obj = json_decode($row);
+                $ufologo = new Ufologo($obj->pais, $obj->legajo, $obj->clave);
+                array_push($retorno, $ufologo);
+            }   
+        }
+        fclose($pArchivo);
+        return $retorno;
+    }
+
+    public static function VerificarExistencia($ufologo) {
+        $retorno = new stdClass();
+        $retorno->exito = false;
+        $retorno->mensaje = "No esta registrado";
+        
+        $arraUfo = Ufologo::TraerTodos();
+        foreach($arraUfo as $ufo) {
+            if($ufologo->legajo == $ufo->legajo && $ufologo->clave == $ufo->clave) {
+                $retorno->exito = true;
+                $retorno->mensaje = "El ufologo esta registrado";
+            }
+        }
+        return json_encode($retorno);
+    }    
+
+    //************************************** */
+    //FUNCIONES BASADAS EN CODIGO DE EMILIANO
+    //*************************************** */
+
+    /*public function GuardarEnArchivo() {
         $objRetorno = new stdClass();
         $objRetorno->exito = false;
         $objRetorno->mensaje = "Error en la escritura";
@@ -48,9 +95,9 @@ class Ufologo
             fclose($archivo);
         }
         return json_encode($objRetorno);
-    }
+    }*/
 
-    public static function TraerTodos() {
+    /*public static function TraerTodos() {
         $destino = "./archivos/ufologos.json";
         $linea = "";
         $ufologos = array();
@@ -68,20 +115,6 @@ class Ufologo
             }
         }
         return $ufologos;
-    }
+    }*/
 
-    public static function VerificarExistencia($ufologo) {
-        $retorno = new stdClass();
-        $retorno->exito = false;
-        $retorno->mensaje = "No esta registrado";
-        
-        $arraUfo = Ufologo::TraerTodos();
-        foreach($arraUfo as $ufo) {
-            if($ufologo->legajo == $ufo->legajo && $ufologo->clave == $ufo->clave) {
-                $retorno->exito = true;
-                $retorno->mensaje = "El ufologo esta registrado";
-            }
-        }
-        return json_encode($retorno);
-    }    
 }
