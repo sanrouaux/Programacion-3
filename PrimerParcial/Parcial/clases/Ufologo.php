@@ -22,7 +22,11 @@ class Ufologo
         $respuesta = fwrite($pArchivo, $this->ToJSON()."\r\n");
         if($respuesta > 0) {
             $retorno->exito = true;
-            $retorno->mensaje = "Se guardo el ufologo";
+            $retorno->mensaje = "Se guard&oacute; el uf&oacute;logo";
+        }
+        else {
+            $retorno->exito = false;
+            $retorno->mensaje = "No se pudo guardar el uf&oacute;logo";
         }        
         fclose($pArchivo);
         return json_encode($retorno);
@@ -47,74 +51,17 @@ class Ufologo
     public static function VerificarExistencia($ufologo) {
         $retorno = new stdClass();
         $retorno->exito = false;
-        $retorno->mensaje = "No esta registrado";
+        $retorno->mensaje = "El uf&oacute;logo no est&aacute; registrado";
         
-        $arraUfo = Ufologo::TraerTodos();
-        foreach($arraUfo as $ufo) {
+        $arrayUfo = Ufologo::TraerTodos();
+        foreach($arrayUfo as $ufo) {
             if($ufologo->legajo == $ufo->legajo && $ufologo->clave == $ufo->clave) {
                 $retorno->exito = true;
-                $retorno->mensaje = "El ufologo esta registrado";
+                $retorno->mensaje = "El uf&oacute;logo est&aacute; registrado";
+                break;
             }
         }
         return json_encode($retorno);
-    }    
-
-    //************************************** */
-    //FUNCIONES BASADAS EN CODIGO DE EMILIANO
-    //*************************************** */
-
-    /*public function GuardarEnArchivo() {
-        $objRetorno = new stdClass();
-        $objRetorno->exito = false;
-        $objRetorno->mensaje = "Error en la escritura";
-        $destino = "./archivos";
-        $stringEscritura = "";
-        if(file_exists($destino)){
-            $destino .= "/ufologos.json";
-            if(!file_exists($destino)){
-                $stringEscritura .= "[";
-            } else {
-                $stringEscritura .= ",";
-                if(file_exists($destino)){
-                    $file = fopen($destino, 'r+') or die("can't open file");
-                    $status = fstat($file);
-                    ftruncate($file, $status['size']-3);
-                    fclose($file);
-                } else {
-                    echo "error";
-                }
-            }
-            $archivo = fopen($destino, "a");
-            $stringEscritura .= $this->ToJson();
-            $stringEscritura .= "]\r\n";
-            $cantidad = fwrite($archivo, $stringEscritura);
-            if($cantidad > 0){
-                $objRetorno->exito = true;
-                $objRetorno->mensaje = "Se guardo al ufologo en el archivo";
-            }
-            fclose($archivo);
-        }
-        return json_encode($objRetorno);
-    }*/
-
-    /*public static function TraerTodos() {
-        $destino = "./archivos/ufologos.json";
-        $linea = "";
-        $ufologos = array();
-        if(file_exists($destino)){
-            $archivo = fopen($destino, "r");
-            while(!feof($archivo)){
-                $linea .= fgets($archivo);
-            }
-            if(!empty($linea)){
-                $listaUfologosJSON = json_decode($linea);
-                foreach ($listaUfologosJSON as $ufoJSON) {
-                    $nuevoUfo = new Ufologo($ufoJSON->pais, $ufoJSON->legajo, $ufoJSON->clave);
-                    $ufologos[] = $nuevoUfo;
-                }
-            }
-        }
-        return $ufologos;
-    }*/
+    } 
 
 }

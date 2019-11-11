@@ -11,7 +11,7 @@ $respuesta = Ufologo::VerificarExistencia($ufologo);
 $obj = json_decode($respuesta);
 
 if($obj->exito == true) {
-    setcookie($legajo, date("c")." - ".$obj->mensaje);
+    setcookie($legajo, date("d-m-Y -- H:i:s")." : ".$obj->mensaje);
     header("location: ListadoUfologos.php");
 }
 else {

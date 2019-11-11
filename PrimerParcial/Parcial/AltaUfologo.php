@@ -7,4 +7,6 @@ $legajo = isset($_POST["legajo"]) ? $_POST["legajo"] : NULL;
 $clave = isset($_POST["clave"]) ? $_POST["clave"] : NULL;
 
 $ufologo = new Ufologo($pais, $legajo, $clave);
-echo $ufologo->GuardarEnArchivo();
+$retorno = $ufologo->GuardarEnArchivo();
+
+echo $retorno;

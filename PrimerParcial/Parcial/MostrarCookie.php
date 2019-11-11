@@ -2,19 +2,19 @@
 
 include "./clases/Ufologo.php";
 
-$jsonLegajo = isset($_GET["json"]) ? $_GET["json"] : NULL;
+$legajo = isset($_GET["paramLegajo"]) ? $_GET["paramLegajo"] : NULL;
 
-$obj = json_decode($jsonLegajo);
+$obj = json_decode($legajo);
 
-$respuesta = new stdClass();
+$retorno = new stdClass();
 
 if(isset($_COOKIE[$obj->legajo])) {
-    $respuesta->exito = true;
-    $respuesta->mensaje = $_COOKIE[$obj->legajo]." - "."Existe la cookie";
+    $retorno->exito = true;
+    $retorno->mensaje = $_COOKIE[$obj->legajo];
 }
 else {
-    $respuesta->exito = false;
-    $respuesta->mensaje = "No existe la cookie";
+    $retorno->exito = false;
+    $retorno->mensaje = "No existe una cookie para tal legajo";
 }
 
-echo json_encode($respuesta);
+echo json_encode($retorno);

@@ -1,0 +1,2 @@
+{"tipo": "explorador", "velocidad": "850", "planetaOrigen": "Omicron" , "pathFoto": "./ovnisBorrados/id.explorador.borrado.011536jpg"}
+{"tipo": "abductor", "velocidad": "12.45", "planetaOrigen": "Omicron" , "pathFoto": "./ovnisBorrados/id.abductor.borrado.022621.jpg"}

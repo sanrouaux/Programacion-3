@@ -4,17 +4,15 @@ include "./clases/Ufologo.php";
 
 $arrayUfo = Ufologo::TraerTodos();
 
-echo "[";
+$retorno = "[";
+
 for($i = 0; $i < count($arrayUfo); $i++) {
-    if($i == count($arrayUfo) - 1) {
-        echo $arrayUfo[$i]->ToJSON()."]";
+    if($i != count($arrayUfo) - 1) { 
+        $retorno .= $arrayUfo[$i]->ToJSON().",<br>";        
     }
     else {
-        echo $arrayUfo[$i]->ToJSON().",<br>";
+        $retorno .= $arrayUfo[$i]->ToJSON()."]";
     }
 }
 
-//foreach($arrayUfo as $ufo) {
-//    echo $ufo->ToJSON().",<br>";
-//}
-//echo "]";
+echo $retorno;
