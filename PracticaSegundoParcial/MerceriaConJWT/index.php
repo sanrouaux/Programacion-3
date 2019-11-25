@@ -49,7 +49,7 @@ $app->group('/listados', function() {
 
     $this->get('[/]', \media::class . '::TraerTodos');
 
-})->add(\MW::class . ':ListadoDiferencial');
+});
 
 
 $app->run();
