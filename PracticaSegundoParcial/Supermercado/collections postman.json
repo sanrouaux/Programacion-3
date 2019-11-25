@@ -1,0 +1,288 @@
+{
+	"info": {
+		"name": "2 Parcial Prog 3",
+		"_postman_id": "a0ac905f-097b-cd29-bd38-9f8432131844",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar Empleado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "Federico",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Thompson",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "federicothompson@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"description": "",
+							"type": "file",
+							"src": "knack.jpg"
+						},
+						{
+							"key": "legajo",
+							"value": "62758",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "3214",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "perfil",
+							"value": "empleado",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php"
+					]
+				},
+				"description": "por post, agregamos un empleado a la base de datos donfubd"
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar Empleado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pedrogonzalez@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "57842",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php/email/clave",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php",
+						"email",
+						"clave"
+					]
+				},
+				"description": "Se verifica si el empleado existe, se devuelve un json conformado por dos elementos, valido y usuario. Si el empleado existe, se devuelve valido:true y usuario:(datos del empleado)"
+			},
+			"response": []
+		},
+		{
+			"name": "Listado de Empleados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php"
+					]
+				},
+				"description": "Se muestra un array compuesto por los datos de los empleados en formato de JSON"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar Producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "15",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Cooler fan",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "30",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "diegogalvan@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "1234",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php/productos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php",
+						"productos"
+					]
+				},
+				"description": "Se agrega un producto a la base de datos DonFuBD"
+			},
+			"response": []
+		},
+		{
+			"name": "Listado de Productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php/productos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php",
+						"productos"
+					]
+				},
+				"description": "Se retorna un array compuesto por todos los productos. Cada elemento del array es un producto en formato JSON"
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Producto",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "email",
+						"value": "federicothompson@gmail.com",
+						"disabled": true
+					},
+					{
+						"key": "clave",
+						"value": "62758",
+						"disabled": true
+					},
+					{
+						"key": "precio",
+						"value": "2500",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"nombre\": \"disco rigido 5tb\",\n  \"precio\": 4900,\n  \"email\":\"diegogalvan@gmail.com\",\n  \"clave\":1234\n}"
+				},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php/productos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php",
+						"productos"
+					]
+				},
+				"description": "Se modifica el producto obteniendo el mismo a traves de su ID. "
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Productos",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "id",
+						"value": "2",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":3,\n\t\"email\":\"federicothompson@gmail.com\",\n\t\"clave\":3214\n}"
+				},
+				"url": {
+					"raw": "localhost/2P-GALVANDIEGO/admin.php/productos",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"2P-GALVANDIEGO",
+						"admin.php",
+						"productos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
